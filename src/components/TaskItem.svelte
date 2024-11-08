@@ -1,35 +1,29 @@
 <script>
-    export let taskName
-    export let date
-    export let status
-    export let onDelete
-  
+    export let taskName;
+    export let date;
+    export let status;
+    export let onDelete;
+
     function handleDelete() {
-      onDelete();
+        onDelete();
     }
-  </script>
-  
-  <main>
+</script>
+
+<main>
     <div class="task">
-      <div class="name">{taskName}</div>
-      <div class="date">{date}</div>
-      <div class="status">
-        <select bind:value={status}>
-          <option value="Готово">Готово</option>
-          <option value="В работе">В работе</option>
-          <option value="Ожидает">Ожидает</option>
-        </select>
-      </div>
+        <div class="name">{taskName}</div>
+        <div class="date">{date}</div>
+        <div class="status">{status}</div>
     </div>
-  </main>
-  
-  <style>
+</main>
+
+<style>
     .task {
-      display: flex;
-      flex-direction: column; 
-      border: 1px solid black;
-      border-radius: 30px;
-      padding: 10px;
-      text-align: center;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        border-radius: 30px;
+        padding: 10px;
+        text-align: center;
     }
-  </style>
+</style>
