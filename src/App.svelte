@@ -3,6 +3,7 @@
     import viteLogo from "/vite.svg";
     import Counter from "./lib/Counter.svelte";
     import TaskList from "./components/TaskList.svelte";
+    import Filter from "./components/Filter.svelte";
 </script>
 
 <main>
@@ -11,6 +12,7 @@
     </div>
     <div class="tasklist">
         !!!
+        <Filter/>
         <TaskList/>
     </div>
 </main>
@@ -21,7 +23,9 @@
     }
 
     .tasklist {
-        text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
         padding-top: 30px;
     }
 </style>
