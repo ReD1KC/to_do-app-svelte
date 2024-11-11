@@ -11,7 +11,6 @@
         <h1>Трекер задач</h1>
     </div>
     <div class="tasklist">
-        !!!
         <Filter/>
         <TaskList/>
     </div>

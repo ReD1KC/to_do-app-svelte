@@ -7,30 +7,37 @@
     let taskName = "";
     let date = "";
     let status = "";
+    let statusOptions = ["Надо сделать", "В процессе", "Сделанно"];
+    let taskDescription = "";
 
     onMount(() => {
         const storedTasks = localStorage.getItem("tasks");
         if (storedTasks) {
             tasks = JSON.parse(storedTasks);
         }
-    })
+    });
 
     function addTask() {
-        tasks = [...tasks, { taskName, date, status }];
+        tasks = [...tasks, { taskName, date, status, taskDescription }];
         localStorage.setItem("tasks", JSON.stringify(tasks));
         showModal = false;
         taskName = "";
         date = "";
         status = "";
+        taskDescription = "";
     }
 
     function deleteTask(index) {
-    tasks = tasks.filter((_, i) => i !== index)
-    localStorage.setItem('tasks', JSON.stringify(tasks)) 
-  }
+        tasks = tasks.filter((_, i) => i !== index);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
 
     function toggleModal() {
         showModal = !showModal;
+    }
+
+    function closeModal() {
+        showModal = false;
     }
 </script>
 
@@ -38,10 +45,10 @@
     <div class="table">
         {#each tasks as task, index}
             <TaskItem
-                {task}
                 date={task.date}
                 status={task.status}
                 taskName={task.taskName}
+                description={task.taskDescription}
             />
             <button on:click={() => deleteTask(index)}>Удалить</button>
         {/each}
@@ -56,8 +63,18 @@
                 <label>Дата:</label>
                 <input type="date" bind:value={date} required />
                 <label>Статус:</label>
-                <input type="text" bind:value={status} required />
-                <button type="submit">Add Task</button>
+                <select bind:value={status} required>
+                    {#each statusOptions as option}
+                        <option value={option}>{option}</option>
+                    {/each}
+                </select>
+                <label>
+                    Описание:<label>
+                        <textarea bind:value={taskDescription} required
+                        ></textarea>
+                        <button type="submit">Добавить задачу</button>
+                    </label></label
+                >
             </form>
         </div>
     {/if}
@@ -67,8 +84,6 @@
     .table {
         display: flex;
         flex-direction: column;
-        border: 1px solid black;
-        border-radius: 30px;
         padding: 5px;
     }
     .cnopka {
